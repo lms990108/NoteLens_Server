@@ -1,11 +1,24 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
+import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { ConfigService } from '@nestjs/config';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   const configService = app.get(ConfigService);
-  const port = configService.get<number>('PORT', 3000); // 'PORT' 값이 없을 경우 기본값으로 3000을 사용
+
+  // Swagger 문서 설정
+  const config = new DocumentBuilder()
+    .setTitle('Example API')
+    .setDescription('API documentation for the example application.')
+    .setVersion('1.0')
+    // .addBearerAuth() // JWT 인증이 필요한 경우 이 옵션을 추가
+    .build();
+  const document = SwaggerModule.createDocument(app, config);
+  SwaggerModule.setup('api', app, document);
+
+  // 포트 설정 및 애플리케이션 리스닝 시작
+  const port = configService.get<number>('PORT', 3000);
   await app.listen(port);
   console.log(`Application is running on port ${port}`);
 }
