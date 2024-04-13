@@ -14,8 +14,6 @@ import { QuestionsModule } from './domain/questions/questions.module';
       inject: [ConfigService],
       useFactory: async (configService: ConfigService) => ({
         uri: configService.get<string>('MONGO_DB_PATH'),
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
       }),
     }),
   ],
