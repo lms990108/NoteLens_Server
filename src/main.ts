@@ -16,7 +16,7 @@ async function bootstrap() {
     // .addBearerAuth() // JWT 인증이 필요한 경우 이 옵션을 추가
     .build();
   const document = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('api', app, document);
+  SwaggerModule.setup('api-docs', app, document);
 
   mongoose.set('debug', true);
 
