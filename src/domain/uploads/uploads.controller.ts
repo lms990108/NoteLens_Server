@@ -5,24 +5,23 @@ import {
   UploadedFile,
 } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
-import AWS from 'aws-sdk';
 import {
   ApiBody,
   ApiConsumes,
   ApiOperation,
   ApiResponse,
   ApiProperty,
+  ApiTags,
 } from '@nestjs/swagger';
 import { UploadsService } from './uploads.service';
-import { application } from 'express';
-import { json } from 'stream/consumers';
 
 export class FileUploadDto {
   @ApiProperty({ type: 'file' })
   file: any;
 }
 
-@Controller('upload')
+@ApiTags('uploads')
+@Controller('uploads')
 export class UploadController {
   constructor(private readonly uploadService: UploadsService) {}
 
