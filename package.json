@@ -28,6 +28,7 @@
     "@nestjs/mongoose": "^10.0.6",
     "@nestjs/platform-express": "^10.0.0",
     "@nestjs/swagger": "^7.3.1",
+    "aws-sdk": "^2.1605.0",
     "mongoose": "^8.3.1",
     "reflect-metadata": "^0.2.0",
     "rxjs": "^7.8.1"
