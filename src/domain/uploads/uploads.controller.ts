@@ -38,6 +38,11 @@ export class UploadController {
     description: '이미지 업로드 성공',
     type: 'application/json', // 응답 타입 명시
   })
+  @ApiResponse({ status: 400, description: '잘못된 요청' })
+  @ApiResponse({ status: 403, description: '접근 금지' })
+  @ApiResponse({ status: 404, description: '버킷을 찾을 수 없음' })
+  @ApiResponse({ status: 500, description: '서버 내부 오류' })
+  @ApiResponse({ status: 401, description: '인증 실패' })
   uploadFile(@UploadedFile() file) {
     console.log(file);
     return this.uploadService.uploadFile(file);
