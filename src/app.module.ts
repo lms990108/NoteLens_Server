@@ -3,6 +3,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { QuestionsModule } from './domain/questions/questions.module';
 import { UploadsModule } from './domain/uploads/uploads.module';
+import { GptModule } from './domain/gpt/gpt.module';
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { UploadsModule } from './domain/uploads/uploads.module';
         uri: configService.get<string>('MONGO_DB_PATH'),
       }),
     }),
+    GptModule,
   ],
 })
 export class AppModule {}
