@@ -10,14 +10,19 @@ export class GptService {
     this.apiKey = this.configService.get<string>('OPENAI_API_KEY');
   }
 
+  private formatPrompt(prompt: string): string {
+    return `${prompt}에 대해 설명해줘`;
+  }
+
   async getChatGptResponse(prompt: string): Promise<string> {
+    const formattedPrompt = this.formatPrompt(prompt);
     try {
       const response = await axios.post(
         'https://api.openai.com/v1/chat/completions',
         {
           model: 'gpt-3.5-turbo',
-          messages: [{ role: 'user', content: prompt }],
-          max_tokens: 150,
+          messages: [{ role: 'user', content: formattedPrompt }],
+          max_tokens: 100, // 테스트할때는 100, 유의미한 결과를 뽑으려면 크게
         },
         {
           headers: {
