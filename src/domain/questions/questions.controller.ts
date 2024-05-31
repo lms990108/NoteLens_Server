@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body } from '@nestjs/common';
+import { Controller, Get, Post, Body, Query } from '@nestjs/common';
 import { QuestionsService } from './questions.service';
 import { CreateQuestionDto } from './dto/create-question.dto';
 import { ApiTags, ApiOperation, ApiResponse } from '@nestjs/swagger';
@@ -28,5 +28,20 @@ export class QuestionsController {
   })
   findAll() {
     return this.questionsService.findAllQuestions();
+  }
+
+  @Post('yolo')
+  @ApiOperation({ summary: 'Create a new question with YOLO response' })
+  @ApiResponse({
+    status: 201,
+    description:
+      'The question has been successfully created with YOLO response.',
+  })
+  @ApiResponse({ status: 400, description: 'Bad Request.' })
+  createWithYolo(
+    @Query('imageUrl') imageUrl: string,
+    @Query('subject') subject: string,
+  ) {
+    return this.questionsService.getYoloAndCreateQuestion(imageUrl, subject);
   }
 }

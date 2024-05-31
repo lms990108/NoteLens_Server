@@ -1,9 +1,11 @@
 import { Module } from '@nestjs/common';
+import { HttpModule } from '@nestjs/axios';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { QuestionsModule } from './domain/questions/questions.module';
 import { UploadsModule } from './domain/uploads/uploads.module';
 import { GptModule } from './domain/gpt/gpt.module';
+import { YoloRequestModule } from './domain/yolo-request/yolo-request.module';
 
 @Module({
   imports: [
@@ -20,6 +22,7 @@ import { GptModule } from './domain/gpt/gpt.module';
       }),
     }),
     GptModule,
+    YoloRequestModule,
   ],
 })
 export class AppModule {}
