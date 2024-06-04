@@ -16,7 +16,7 @@ export class GptService {
   }
 
   private formatPrompt(prompt: string): string {
-    return `${prompt}에 대해 설명해줘`;
+    return `${prompt}에 대해 한글로 설명해줘`;
   }
 
   async getChatGptResponse(prompt: string): Promise<string> {
